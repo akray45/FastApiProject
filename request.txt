@@ -1,0 +1,17 @@
+{
+  "street": "123 Main St",
+  "city": "Example City",
+  "state": "EX",
+  "zip_code": "12345",
+  "latitude": 40.7128, 
+  "longitude": -74.0060"
+}
+
+{
+  "street": "1234 Main St",
+  "city": "Example City 2",
+  "state": "EX 1",
+  "zip_code": "12346",
+  "latitude": 41.7128, 
+  "longitude": -75.0060"
+}
