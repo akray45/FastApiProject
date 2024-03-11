@@ -1,8 +1,7 @@
-from operator import add
 from fastapi import FastAPI, HTTPException, Response, status
 from db.database import SESSION, engine
 from app import models 
-from app.schemas import Address, AddressCreate, AddressUpdate
+from app.schemas import AddressSchema, AddressCreate, AddressUpdate
 """To create all the requred table"""
 models.Base.metadata.create_all(engine)
 
@@ -21,7 +20,7 @@ app = FastAPI()
 def get_health() -> Response:
     """Returns the health of the application"""
     return Response(content= "Application is up and running", status_code= status.HTTP_200_OK)
-@app.post("/create-address", response_model=Address)
+@app.post("/create-address")
 def create_address(address: AddressCreate):
     """Post request which accepts schema AddressCreate and creates an instance of Address in db"""
     address_obj = models.Address(**address.dict())
@@ -86,18 +85,19 @@ def delete_address(id: int) -> Response:
         print(ex)
     finally:
         session.close()
-@app.get("/get-all-addresses", response_model= list[Address])
+@app.get("/get-all-addresses")
 def get_all_addresses():
     """Gives list of the obj present in database"""
     session = SESSION()
     try:
         all_addresses = session.query(models.Address).all()
+        print(all_addresses)
         return all_addresses
     except Exception as ex:
         print(ex)
     finally:
         session.close()
-@app.post("/update-address/{address_id}", response_model=AddressUpdate)
+@app.post("/update-address/{address_id}")
 def update_address(address_id: int, address: AddressUpdate):
     """Gets address_id to query db then update the attributes depending on address obj in post request"""
     session = SESSION()

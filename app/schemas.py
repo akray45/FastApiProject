@@ -11,7 +11,7 @@ class AddressBase(BaseModel):
 class AddressCreate(AddressBase):
     latitude: float 
     longitude: float
-class Address(AddressBase):
+class AddressSchema(AddressBase):
     id: int
 class AddressUpdate(AddressCreate):
     pass
