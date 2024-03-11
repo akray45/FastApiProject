@@ -18,3 +18,14 @@ The address should:
 - be validated
 API Users should also be able to retrieve the addresses that are within a given distance and
 location coordinates.
+
+Docker file if not able to run it locally
+
+Bild the image:-
+docker build --no-cache -f  DockerFile -t fastapi .
+
+Run the container:-
+docker run -d -p  80:80  --name fastapi fastapi
+
+Stop and Remove the container:-
+docker rm -f fastapi
